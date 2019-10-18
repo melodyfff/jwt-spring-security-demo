@@ -88,20 +88,21 @@ public class TokenProvider implements InitializingBean {
 
    public boolean validateToken(String authToken) {
       try {
+         // 校验该token是否可以解析
          Jwts.parser().setSigningKey(key).parseClaimsJws(authToken);
          return true;
       } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
          log.info("Invalid JWT signature.");
-         log.trace("Invalid JWT signature trace: {}", e);
+         log.trace("Invalid JWT signature trace: ", e);
       } catch (ExpiredJwtException e) {
          log.info("Expired JWT token.");
-         log.trace("Expired JWT token trace: {}", e);
+         log.trace("Expired JWT token trace: ", e);
       } catch (UnsupportedJwtException e) {
          log.info("Unsupported JWT token.");
-         log.trace("Unsupported JWT token trace: {}", e);
+         log.trace("Unsupported JWT token trace: ", e);
       } catch (IllegalArgumentException e) {
          log.info("JWT token compact of handler are invalid.");
-         log.trace("JWT token compact of handler are invalid trace: {}", e);
+         log.trace("JWT token compact of handler are invalid trace: ", e);
       }
       return false;
    }

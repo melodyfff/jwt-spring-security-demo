@@ -15,6 +15,16 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
+ *
+ * 检查请求的header里面是否包含 'Authorization' 并且以'Bearer '开头
+ *
+ * 如果检测到,则使用我们自定义的TokenProvider进行校验这个token是否有效
+ *
+ * 如果校验成功则通过自定义的TokenProvider构建Authentication返回,并且通过
+ * <code>SecurityContextHolder.getContext().setAuthentication(authentication)</code>
+ * 设置认证上下文
+ *
+ *
  * Filters incoming requests and installs a Spring Security principal if a header corresponding to a valid user is
  * found.
  */

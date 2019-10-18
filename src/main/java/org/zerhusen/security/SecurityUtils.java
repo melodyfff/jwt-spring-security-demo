@@ -21,6 +21,7 @@ public class SecurityUtils {
     * @return the login of the current user.
     */
    public static Optional<String> getCurrentUsername() {
+      // 获取当前线程中是否有登录的用户
       final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
       if (authentication == null) {

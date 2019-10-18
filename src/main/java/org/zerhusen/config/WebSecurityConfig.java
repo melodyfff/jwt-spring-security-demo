@@ -72,10 +72,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          // we don't need CSRF because our token is invulnerable
          .csrf().disable()
 
+         // 在用户名密码校验拦截器之前添加自定义的跨域拦截器
          .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
 
+         // 允许配置异常处理,当使用WebSecurityConfigurerAdapter时自动应用
          .exceptionHandling()
+         // 设置我们自定义的入口
          .authenticationEntryPoint(authenticationErrorHandler)
+         // 设置自定义403异常处理
          .accessDeniedHandler(jwtAccessDeniedHandler)
 
          // enable h2-console
@@ -103,6 +107,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          .anyRequest().authenticated()
 
          .and()
+
+         // 这里主要是添加我们自定义的JWTFilter进行认证
          .apply(securityConfigurerAdapter());
    }
 

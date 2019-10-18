@@ -4,7 +4,7 @@
 
 $(function () {
    // VARIABLES =============================================================
-   var TOKEN_KEY = "jwtToken"
+   var TOKEN_KEY = "jwtToken";
    var $notLoggedIn = $("#notLoggedIn");
    var $loggedIn = $("#loggedIn").hide();
    var $response = $("#response");
@@ -35,7 +35,7 @@ $(function () {
             setJwtToken(data.id_token);
             $login.hide();
             $notLoggedIn.hide();
-            showTokenInformation()
+            showTokenInformation();
             showUserInformation();
          },
          error: function (jqXHR, textStatus, errorThrown) {

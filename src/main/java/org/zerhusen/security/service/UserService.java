@@ -9,7 +9,7 @@ import org.zerhusen.security.repository.UserRepository;
 import java.util.Optional;
 
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class UserService {
 
    private final UserRepository userRepository;
@@ -20,6 +20,7 @@ public class UserService {
 
    @Transactional(readOnly = true)
    public Optional<User> getUserWithAuthorities() {
+      // 查询当前安全上下文中是否存在用户名,如果有则传入.flatMap(),去数据库查询GrantedAuthority信息,构建返回一个User对象
       return SecurityUtils.getCurrentUsername().flatMap(userRepository::findOneWithAuthoritiesByUsername);
    }
 

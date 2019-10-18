@@ -13,6 +13,10 @@ public class JwtAccessDeniedHandler implements AccessDeniedHandler {
 
    @Override
    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException {
+      //当用户尝试在没有必要授权的情况下尝试访问安全的REST资源时调用此方法
+      //我们应该只发送403禁止响应，因为没有“错误”页面可重定向到
+      //在这里您可以放置任何想要的消息
+
       // This is invoked when user tries to access a secured REST resource without the necessary authorization
       // We should just send a 403 Forbidden response because there is no 'error' page to redirect to
       // Here you can place any message you want

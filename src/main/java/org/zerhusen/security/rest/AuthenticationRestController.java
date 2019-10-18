@@ -36,7 +36,7 @@ public class AuthenticationRestController {
 
    @PostMapping("/authenticate")
    public ResponseEntity<JWTToken> authorize(@Valid @RequestBody LoginDto loginDto) {
-
+      // 模拟http请求登录,返回jwt token
       UsernamePasswordAuthenticationToken authenticationToken =
          new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
 
